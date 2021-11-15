@@ -18,11 +18,11 @@ def CreatePieChart(arrayML):
     femaleStats = arrayML.count('female')
 
     data = [maleStats, femaleStats]
-    gender = ['Male '+str(maleStats*100/len(arrayML))+'%', 'Female '+str(femaleStats*100/len(arrayML))+'%']
+    gender = ['Male '+str(round(maleStats*100/len(arrayML)))+'%', 'Female '+str(round(femaleStats*100/len(arrayML)))+'%']
 
-    fig = plt.figure(figsize =(10, 7))
+    plt.figure(figsize =(10, 7))
     plt.pie(data, labels = gender)
-
+    print(data)
     plt.show()
 
 
@@ -92,7 +92,7 @@ def runML(fileName, modelURL):
 
 
 def mainPieChart(fileName):
-  arrayML = runML(fileName, 'http://35645446-4db7-4cdf-97e7-576c2d7590f3.northeurope.azurecontainer.io/score')
+  arrayML = runML(fileName, 'http://57ce19b0-2b8d-4687-a39a-8279cd57273f.northeurope.azurecontainer.io/score') #10 seconds no silence
  
   CreatePieChart(arrayML)
 

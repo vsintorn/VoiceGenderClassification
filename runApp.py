@@ -1,15 +1,21 @@
 
+from os import name
 import rpy2.robjects as robjects
-
-import removeSilence.soundprocess1 as sp
+import removeSilence.soundprocess as sp
 import createPieChart as cpc
-#import taBortTystnad.silenceremove1 as sr
+import sys
 
-def runApplication (nameWav):
+
+def main (args):
+  if len(args) != 1:
+    sys.stderr.write('Usage: runApp.py <path to wav file>\n')
+    sys.exit(1)
+
+  nameWav = args[0]
   # Defining the R script and loading the instance in Python
   r = robjects.r
   r['source']('meeting2csv.R')
-
+  print('hej')
   #Remove silence from audio 
   silenceRemovedPath = sp.soundProcessMain(f'{nameWav}')
 
@@ -23,4 +29,6 @@ def runApplication (nameWav):
   #predict gender and print out a pie chart of the result
   cpc.mainPieChart(namecsv)
  
-runApplication('Poddelipodd.wav')
+#runApplication('Poddelipodd.wav')
+if __name__ == "__main__":
+    main(sys.argv[1:])

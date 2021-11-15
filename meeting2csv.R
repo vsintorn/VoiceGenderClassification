@@ -149,7 +149,7 @@ breakDownMeeting <- function(fileName, outputFolder,length){
   #calculate how many bits the meeting will result in (num_iterations)
   
   print(outputFolder)
-  setwd('taBortTystnad/silenced')
+  setwd('removeSilence/silenced')
   #print(getwd())
   #print(strsplit(fileName, '/', fixed=T))
   #print(getwd())

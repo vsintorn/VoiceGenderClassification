@@ -141,6 +141,6 @@ def silenceRemoveFunc(agressiveness, filename):
     filename = filename.split('/')[-1]
     filename = filename.split('.')[0]
 
-    non_silence_fileName = f"taBortTystnad/silenced/{filename}Non-Silenced.wav"
+    non_silence_fileName = f"removesilence/silenced/{filename}Non-Silenced.wav"
     write_wave(non_silence_fileName, joinedaudio, sample_rate)
     return (non_silence_fileName)

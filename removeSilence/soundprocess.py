@@ -1,24 +1,44 @@
 from pydub import AudioSegment
 import os
-import silenceremove as sr
+import sys
+import removeSilence.silenceremove as sr
 
 
-for filename in os.listdir(r'maleSpace'):
-    #print(filename)
-    sound = AudioSegment.from_file(f'maleSpace/{filename}')
-    #print("----------Before Conversion--------")
-    #print("Frame Rate", sound.frame_rate)
-    #print("Channel", sound.channels)
-    #print("Sample Width",sound.sample_width)
+def soundProcess(filePath):
+    sound = AudioSegment.from_file(f'{filePath}')
+    print("----------Before Conversion--------")
+    print("Frame Rate", sound.frame_rate)
+    print("Channel", sound.channels)
+    print("Sample Width",sound.sample_width)
     # Change Frame Rate
-    sound = sound.set_frame_rate(48000)
-      # Change Channel
+    sound = sound.set_frame_rate(48000) #set this to 48000
+    # Change Channel
     sound = sound.set_channels(1)
-      # Change Sample Width
+    # Change Sample Width
     sound = sound.set_sample_width(2)
-      # Export the Audio to get the changed contentsound.export("convertedrate.wav", format ="wav")
-    sound.export(f"converted/{filename}converted.wav", format ="wav")
+    # Export the Audio to get the changed contentsound.export("convertedrate.wav", format ="wav")
+   
+    fileName = filePath.split('/')[-1]
+   
+    sound.export(f"removeSilence/convertedTest/{fileName}converted.wav", format ="wav")
+    
+    
+    for filename in os.listdir(r'removeSilence/convertedTest'):
+        filePath = f'removeSilence/convertedTest/{filename}'
+        #os.system("py taBortTystnad/silenceremove.py 3 " + filePath)
+        silencedFilePath = sr.silenceRemoveFunc(2, filePath)
+        return (silencedFilePath)
 
-for filename in os.listdir(r'converted'):
-  silencedFilePath = sr.silenceRemoveFunc(2, f"converted/{filename}")
-    #os.system("py silenceremove.py 3 " + f'converted/{filename}')
+
+def soundProcessMain(path):
+    #if len(args) != 1:
+     #   sys.stderr.write(
+      #      'Usage: soundprocess.py <path to folder>\n')
+       # sys.exit(1)
+    filePath = soundProcess(path)
+   
+    return (filePath)
+
+    
+
+
