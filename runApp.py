@@ -1,8 +1,7 @@
 
 import rpy2.robjects as robjects
-import os
-import subprocess
-import taBortTystnad.soundprocess1 as sp
+
+import removeSilence.soundprocess1 as sp
 import createPieChart as cpc
 #import taBortTystnad.silenceremove1 as sr
 
@@ -11,17 +10,17 @@ def runApplication (nameWav):
   r = robjects.r
   r['source']('meeting2csv.R')
 
-
-
-  #nameWav = convertToWav_function_r('Verapratar10min.mp3')
+  #Remove silence from audio 
   silenceRemovedPath = sp.soundProcessMain(f'{nameWav}')
-  #print(silenceRemovedPath)
+
   # Loading the functions we have defined in R.
   meeting2csv_function_r = robjects.globalenv['meeting2csv']
   #Invoking the R function and getting the result
+  # extract features from sound to a CSV file
   namecsv = meeting2csv_function_r(silenceRemovedPath)
   namecsv=''.join(namecsv)
-  #TEST namecsv = 'VeraPratar10min.csv'
+  
+  #predict gender and print out a pie chart of the result
   cpc.mainPieChart(namecsv)
-  print(namecsv)
+ 
 runApplication('Poddelipodd.wav')
