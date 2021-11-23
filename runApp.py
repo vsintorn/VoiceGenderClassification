@@ -18,7 +18,6 @@ def main (args):
   print('hej')
   #Remove silence from audio 
   silenceRemovedPath = sp.soundProcessMain(f'{nameWav}')
-
   # Loading the functions we have defined in R.
   meeting2csv_function_r = robjects.globalenv['meeting2csv']
   #Invoking the R function and getting the result
