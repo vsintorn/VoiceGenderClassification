@@ -20,7 +20,7 @@ def soundProcess(filePath):
    
     fileName = filePath.split('/')[-1]
    
-    sound.export(f"removeSilence/convertedTest/{fileName}converted.wav", format ="wav")
+    sound.export(f"removeSilence/converted/{fileName}converted.wav", format ="wav")
     
     
     for filename in os.listdir(r'removeSilence/converted'):
