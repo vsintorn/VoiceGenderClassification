@@ -1,4 +1,3 @@
-
 from os import name
 import rpy2.robjects as robjects
 import removeSilence.soundprocess as sp

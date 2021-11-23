@@ -2,7 +2,7 @@ from pydub import AudioSegment
 import os
 import sys
 import removeSilence.silenceremove as sr
-
+# Most parts of This code is from (KÄLLA)
 
 def soundProcess(filePath):
     sound = AudioSegment.from_file(f'{filePath}')
@@ -11,7 +11,7 @@ def soundProcess(filePath):
     print("Channel", sound.channels)
     print("Sample Width",sound.sample_width)
     # Change Frame Rate
-    sound = sound.set_frame_rate(48000) #set this to 48000
+    sound = sound.set_frame_rate(48000) #set this to 48000, lower if machine get memorry error, this will reduce quality of sound and might effect ML prediction
     # Change Channel
     sound = sound.set_channels(1)
     # Change Sample Width
@@ -23,18 +23,15 @@ def soundProcess(filePath):
     sound.export(f"removeSilence/convertedTest/{fileName}converted.wav", format ="wav")
     
     
-    for filename in os.listdir(r'removeSilence/convertedTest'):
-        filePath = f'removeSilence/convertedTest/{filename}'
-        #os.system("py taBortTystnad/silenceremove.py 3 " + filePath)
+    for filename in os.listdir(r'removeSilence/converted'):
+        filePath = f'removeSilence/converted/{filename}'
+        
         silencedFilePath = sr.silenceRemoveFunc(2, filePath)
         return (silencedFilePath)
 
 
 def soundProcessMain(path):
-    #if len(args) != 1:
-     #   sys.stderr.write(
-      #      'Usage: soundprocess.py <path to folder>\n')
-       # sys.exit(1)
+
     filePath = soundProcess(path)
    
     return (filePath)
