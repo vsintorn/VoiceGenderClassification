@@ -4,7 +4,15 @@ import sys
 import wave
 import webrtcvad
 
-# mostly of this code is from (KÄLLA)
+# This code is based on 
+"""/***************************************************************************************
+*    Title: Audio Processing
+*    Author: Bala Murugan NG
+*    Date: 2020/06/13
+*    Code version: <code version>
+*    Availability: https://github.com/ngbala6/Audio-Processing
+*
+***************************************************************************************/"""
 
 def read_wave(path):
     """Reads a .wav file.

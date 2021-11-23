@@ -27,6 +27,6 @@ def main (args):
   #predict gender and print out a pie chart of the result
   cpc.mainPieChart(namecsv)
  
-#runApplication('Poddelipodd.wav')
+
 if __name__ == "__main__":
     main(sys.argv[1:])

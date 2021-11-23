@@ -2,7 +2,16 @@ from pydub import AudioSegment
 import os
 import sys
 import removeSilence.silenceremove as sr
-# Most parts of This code is from (KÄLLA)
+# This code is based on 
+"""/***************************************************************************************
+*    Title: Audio Processing
+*    Author: Bala Murugan NG
+*    Date: 2020/06/13
+*    Code version: <code version>
+*    Availability: https://github.com/ngbala6/Audio-Processing
+*
+***************************************************************************************/"""
+
 
 def soundProcess(filePath):
     sound = AudioSegment.from_file(f'{filePath}')
